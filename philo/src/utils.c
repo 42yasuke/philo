@@ -6,7 +6,7 @@
 /*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 20:32:50 by jose              #+#    #+#             */
-/*   Updated: 2023/04/29 03:22:13 by jose             ###   ########.fr       */
+/*   Updated: 2023/04/29 10:38:59 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ int	parsing_manager(int ac, char **av)
 		if (!i && ft_atoi(av[i]) < 1)
 			return (false);
 		if (ft_atoi(av[i]) > 1000)
+			return (false);
+		if (ac == 4 && i == 3 && ft_atoi(av[i]) < 1)
 			return (false);
 		i++;
 	}

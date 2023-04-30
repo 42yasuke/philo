@@ -6,7 +6,7 @@
 #    By: jose <jose@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 20:06:58 by jose              #+#    #+#              #
-#    Updated: 2023/04/28 20:44:49 by jose             ###   ########.fr        #
+#    Updated: 2023/04/29 12:42:55 by jose             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,9 @@ RM = rm -f
 
 C_FILES =	error.c \
 			utils.c \
+			free.c \
+			philo.c \
+			philo_utils.c \
 			main.c
 
 SRC = $(addprefix src/, $(C_FILES))
