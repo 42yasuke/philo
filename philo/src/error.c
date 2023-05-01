@@ -6,7 +6,7 @@
 /*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 20:24:36 by jose              #+#    #+#             */
-/*   Updated: 2023/04/29 18:48:07 by jose             ###   ########.fr       */
+/*   Updated: 2023/05/01 17:16:42 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,4 +20,8 @@ void	ft_error(int err)
 		write(STDERR_FILENO, "Error: bad parameters\n", 23);
 	else if (err == MUTEX_INIT)
 		write(STDERR_FILENO, "Error: mutex init failed\n", 26);
+	else if (err == THREAD_CREATE)
+		write(STDERR_FILENO, "Error: thread create failed\n", 29);
+	else if (err == THREAD_JOIN)
+		write(STDERR_FILENO, "Error: thread join failed\n", 27);
 }
