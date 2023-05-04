@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   eat_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/29 12:42:32 by jose              #+#    #+#             */
-/*   Updated: 2023/05/04 09:49:35 by jose             ###   ########.fr       */
+/*   Created: 2023/05/03 16:40:17 by jose              #+#    #+#             */
+/*   Updated: 2023/05/03 16:45:24 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_free_lst_philo(t_philo *lst)
+int	ft_your_t(t_philo *philo)
 {
-	t_philo		*tmp;
-	int	i;
+	t_philo	*tmp;
 
-	i = 0;
-	while (lst)
+	tmp = ft_first_philo(philo);
+	while (tmp)
 	{
-		tmp = lst->next;
-		if (!i++)
-		{
-			if (lst->mutex)
-				pthread_mutex_destroy(lst->mutex);
-			(free(lst->mutex), free(lst->forks));
-		}
-		(free(lst->philo_thread), free(lst));
-		lst = tmp;
+		if (tmp->time_last_meal < philo->time_last_meal)
+			return (false);
+		tmp = tmp->next;
 	}
+	return (true);
 }

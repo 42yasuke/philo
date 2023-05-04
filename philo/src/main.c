@@ -6,7 +6,7 @@
 /*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 20:11:00 by jose              #+#    #+#             */
-/*   Updated: 2023/04/29 18:44:26 by jose             ###   ########.fr       */
+/*   Updated: 2023/05/04 10:22:39 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	main(int ac, char **av)
 {
 	(void)av;
-	if(ac != 3 || ac != 4)
+	if(ac != 5 && ac != 6)
 		ft_error(BAD_NUM_PARAMETERS);
 	else if (!parsing_manager(ac, av))
 		ft_error(BAD_PARAMETERS);

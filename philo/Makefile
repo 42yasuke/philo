@@ -6,15 +6,15 @@
 #    By: jose <jose@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/28 20:06:58 by jose              #+#    #+#              #
-#    Updated: 2023/05/01 15:26:37 by jose             ###   ########.fr        #
+#    Updated: 2023/05/04 10:19:21 by jose             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
-CFLAGS_OBJ = -Wall -Wextra -Werror -c
+CFLAGS_OBJ = -Wall -Wextra -Werror -c -g
 
 RM = rm -f
 
@@ -23,6 +23,13 @@ C_FILES =	error.c \
 			free.c \
 			philo.c \
 			philo_utils.c \
+			philo_utils2.c \
+			eat.c \
+			eat_utils.c \
+			ft_itoa.c \
+			dead.c \
+			think.c \
+			sleep.c \
 			main.c
 
 SRC = $(addprefix src/, $(C_FILES))

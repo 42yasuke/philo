@@ -6,15 +6,15 @@
 /*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 20:32:50 by jose              #+#    #+#             */
-/*   Updated: 2023/04/29 10:38:59 by jose             ###   ########.fr       */
+/*   Updated: 2023/05/04 10:29:52 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_strlen(char *str)
+size_t	ft_strlen(char *str)
 {
-	int	i;
+	size_t	i;
 
 	i = 0;
 	while (str[i])
@@ -31,7 +31,7 @@ int	ft_only_digit(char *str)
 		return (false);
 	while (str[i])
 	{
-		if ('0'> str[i] || str[i] < '9')
+		if ('0' > str[i] || str[i] > '9')
 			return (false);
 		i++;
 	}
@@ -67,7 +67,7 @@ int	parsing_manager(int ac, char **av)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	while (i < ac)
 	{
 		if (!ft_only_digit(av[i]))
