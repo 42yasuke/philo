@@ -6,7 +6,7 @@
 /*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 20:09:12 by jose              #+#    #+#             */
-/*   Updated: 2023/05/04 10:18:57 by jose             ###   ########.fr       */
+/*   Updated: 2023/05/05 22:01:23 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdbool.h>
 # include <sys/time.h>
 # include <string.h>
+# include <stdio.h>
 
 typedef struct s_philo
 {
@@ -76,6 +77,9 @@ t_philo	*ft_first_philo(t_philo *philo);
 /*	eat.c	*/
 int		ft_eat(t_philo *philo);
 void	ft_print_eat(t_philo *philo, unsigned long long elapsed_ms);
+void	ft_drop_forks(t_philo *philo);
+void	ft_getting_them(t_philo *philo);
+int		ft_get_forks(t_philo *philo);
 
 /*	eat_utils.c	*/
 int		ft_your_t(t_philo *philo);
