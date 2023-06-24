@@ -6,36 +6,25 @@
 /*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 10:39:40 by jose              #+#    #+#             */
-/*   Updated: 2023/05/10 01:37:58 by jose             ###   ########.fr       */
+/*   Updated: 2023/06/24 11:00:17 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	ft_stop(t_config *conf, int *stop)
-{
-	pthread_mutex_lock(conf->m);
-	*stop = conf->stop_thread;
-	pthread_mutex_unlock(conf->m);
-	return (*stop);
-}
-
 static void	*ft_philo(void *phil)
 {
 	t_philo	*philo;
-	int		stop;
 
 	philo = (t_philo *)phil;
-	ft_stop(philo->conf, &stop);
-	while (!stop)
+	while (true)
 	{
-		ft_eat(philo);
-		if (ft_stop(philo->conf, &stop))
+		if (ft_eat(philo))
 			break ;
-		ft_sleep(philo);
-		if (ft_stop(philo->conf, &stop))
+		if (ft_sleep(philo))
 			break ;
-		ft_think(philo);
+		if (ft_think(philo))
+			break ;
 	}
 	return (phil);
 }
@@ -51,7 +40,7 @@ static int	ft_thread_create(t_config *conf)
 		thrd = &conf->thrds[i];
 		if (pthread_create(thrd, NULL, &ft_philo, (void *)(&conf->philo[i])))
 			return (ft_free_all(conf), ft_error(THREAD_CREATE), EXIT_FAILURE);
-		usleep(20);
+		usleep(5);
 		i++;
 	}
 	return (EXIT_SUCCESS);

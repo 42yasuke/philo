@@ -6,7 +6,7 @@
 /*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:24:27 by jose              #+#    #+#             */
-/*   Updated: 2023/05/10 01:32:56 by jose             ###   ########.fr       */
+/*   Updated: 2023/06/24 11:24:29 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,15 +85,15 @@ int		ft_all_alive(t_config *conf);
 int		ft_all_eat(t_config *conf);
 
 /*	eat.c	*/
-void	ft_eat(t_philo *philo);
+int		ft_eat(t_philo *philo);
 
 /*	dead.c	*/
 void	ft_print_death(t_philo *philo);
 
 /*	think.c	*/
-void	ft_think(t_philo *philo);
+int		ft_think(t_philo *philo);
 
 /*	sleep.c	*/
-void	ft_sleep(t_philo *philo);
+int		ft_sleep(t_philo *philo);
 
 #endif
