@@ -6,7 +6,7 @@
 /*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 00:48:27 by jose              #+#    #+#             */
-/*   Updated: 2023/05/10 00:58:32 by jose             ###   ########.fr       */
+/*   Updated: 2023/08/03 20:23:58 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_all_alive(t_config *conf)
 		if (death <= timestamp_in_ms())
 		{
 			conf->stop_thread = true;
-			return (ft_print_death(philo), false);
+			return (ft_print_death(&philo[i]), false);
 		}
 		i++;
 	}
