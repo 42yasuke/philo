@@ -6,7 +6,7 @@
 /*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 01:59:31 by jose              #+#    #+#             */
-/*   Updated: 2023/06/24 11:23:32 by jose             ###   ########.fr       */
+/*   Updated: 2023/08/03 21:29:56 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,17 @@ static int	ft_print_eat(t_philo *philo)
 	while (++i < 3)
 	{
 		str = ft_itoa(elapsed_ms);
-		write (STDIN_FILENO, str, ft_strlen(str));
-		write (STDIN_FILENO, "ms ", 3);
+		write (STDOUT_FILENO, str, ft_strlen(str));
+		write (STDOUT_FILENO, "ms ", 3);
 		str2 = ft_itoa(philo->id + 1);
-		write (STDIN_FILENO, str2, ft_strlen(str2));
+		write (STDOUT_FILENO, str2, ft_strlen(str2));
 		if (i < 2)
-			write (STDIN_FILENO, " has taken a fork\n", 19);
+			write (STDOUT_FILENO, " has taken a fork\n", 19);
 		else
-			write (STDIN_FILENO, " is eating\n", 12);
+			write (STDOUT_FILENO, " is eating\n", 12);
 		(free(str), free(str2));
 	}
-	philo->t_last_meal += philo->conf->t_eat * 1000;
-	return (philo->eat_num++, pthread_mutex_unlock(philo->conf->m), false);
+	return (pthread_mutex_unlock(philo->conf->m), false);
 }
 
 static void	ft_get_forks(t_philo *philo)
@@ -101,6 +100,10 @@ int	ft_eat(t_philo *philo)
 		if (ft_print_eat(philo))
 			return (ft_drop_forks(philo), true);
 		usleep(philo->conf->t_eat * 1000);
+		pthread_mutex_lock(philo->conf->m);
+		philo->t_last_meal += philo->conf->t_eat;
+		philo->eat_num++;
+		pthread_mutex_unlock(philo->conf->m);
 		ft_drop_forks(philo);
 	}
 	return (false);
