@@ -6,7 +6,7 @@
 /*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 08:34:17 by jose              #+#    #+#             */
-/*   Updated: 2023/06/24 11:19:28 by jose             ###   ########.fr       */
+/*   Updated: 2023/08/05 08:25:38 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ft_print_sleep(t_philo *philo)
 	if (philo->conf->stop_thread)
 		return (pthread_mutex_unlock(philo->conf->m), free(str), true);
 	write (STDOUT_FILENO, str, ft_strlen(str));
-	write (STDOUT_FILENO, "ms ", 3);
+	write (STDOUT_FILENO, " ", 1);
 	str2 = ft_itoa(philo->id + 1);
 	write (STDOUT_FILENO, str2, ft_strlen(str2));
 	write (STDOUT_FILENO, " is sleeping\n", 14);

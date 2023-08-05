@@ -6,7 +6,7 @@
 /*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 01:59:31 by jose              #+#    #+#             */
-/*   Updated: 2023/08/03 21:29:56 by jose             ###   ########.fr       */
+/*   Updated: 2023/08/05 10:38:20 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	ft_print_eat(t_philo *philo)
 	{
 		str = ft_itoa(elapsed_ms);
 		write (STDOUT_FILENO, str, ft_strlen(str));
-		write (STDOUT_FILENO, "ms ", 3);
+		write (STDOUT_FILENO, " ", 1);
 		str2 = ft_itoa(philo->id + 1);
 		write (STDOUT_FILENO, str2, ft_strlen(str2));
 		if (i < 2)
@@ -101,7 +101,7 @@ int	ft_eat(t_philo *philo)
 			return (ft_drop_forks(philo), true);
 		usleep(philo->conf->t_eat * 1000);
 		pthread_mutex_lock(philo->conf->m);
-		philo->t_last_meal += philo->conf->t_eat;
+		philo->t_last_meal = timestamp_in_ms();
 		philo->eat_num++;
 		pthread_mutex_unlock(philo->conf->m);
 		ft_drop_forks(philo);
