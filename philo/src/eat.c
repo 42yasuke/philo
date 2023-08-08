@@ -6,7 +6,7 @@
 /*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 01:59:31 by jose              #+#    #+#             */
-/*   Updated: 2023/08/05 10:38:20 by jose             ###   ########.fr       */
+/*   Updated: 2023/08/08 17:42:04 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,15 @@ static int	ft_print_eat(t_philo *philo)
 	return (pthread_mutex_unlock(philo->conf->m), false);
 }
 
+static void	ft_get_forks2(t_philo *philo)
+{
+	pthread_mutex_t	*forks;
+
+	forks = philo->conf->forks;
+	pthread_mutex_lock(&forks[philo->id]);
+	pthread_mutex_lock(&forks[0]);
+}
+
 static void	ft_get_forks(t_philo *philo)
 {
 	pthread_mutex_t	*forks;
@@ -75,7 +84,11 @@ static void	ft_get_forks(t_philo *philo)
 	if (philo->id % 2 == 0)
 	{
 		if (philo->id == conf->philo_num - 1)
+		{
+			if (philo->conf->philo_num % 2)
+				return (ft_get_forks2(philo));
 			pthread_mutex_lock(&forks[0]);
+		}
 		else
 			pthread_mutex_lock(&forks[philo->id + 1]);
 		pthread_mutex_lock(&forks[philo->id]);
