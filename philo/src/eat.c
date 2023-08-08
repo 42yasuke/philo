@@ -6,7 +6,7 @@
 /*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 01:59:31 by jose              #+#    #+#             */
-/*   Updated: 2023/08/08 17:42:04 by jose             ###   ########.fr       */
+/*   Updated: 2023/08/08 18:02:09 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ static void	ft_get_forks2(t_philo *philo)
 
 	forks = philo->conf->forks;
 	pthread_mutex_lock(&forks[philo->id]);
+	usleep(5);
 	pthread_mutex_lock(&forks[0]);
 }
 
