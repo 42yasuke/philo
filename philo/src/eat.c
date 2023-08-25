@@ -6,7 +6,7 @@
 /*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 01:59:31 by jose              #+#    #+#             */
-/*   Updated: 2023/08/25 14:02:10 by jose             ###   ########.fr       */
+/*   Updated: 2023/08/25 15:24:38 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	ft_get_forks2(t_philo *philo)
 
 	forks = philo->conf->forks;
 	pthread_mutex_lock(&forks[philo->id]);
-	usleep(100);
+	usleep(500);
 	pthread_mutex_lock(&forks[0]);
 }
 
@@ -82,7 +82,7 @@ static void	ft_get_forks(t_philo *philo)
 	}
 	else
 	{
-		(usleep(100), pthread_mutex_lock(&forks[philo->id]));
+		(usleep(1000), pthread_mutex_lock(&forks[philo->id]));
 		if (philo->id == conf->philo_num - 1)
 			pthread_mutex_lock(&forks[0]);
 		else

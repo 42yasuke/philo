@@ -6,7 +6,7 @@
 /*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 10:39:40 by jose              #+#    #+#             */
-/*   Updated: 2023/08/25 13:25:29 by jose             ###   ########.fr       */
+/*   Updated: 2023/08/25 16:08:12 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,11 @@ void	ft_philo_manager(int ac, char **av)
 		return ;
 	if (ft_thread_create(conf))
 		return ;
-	usleep(conf->t_die * 1000);
 	while (stop)
 	{
 		pthread_mutex_lock(conf->m);
 		stop = (ft_all_alive(conf) && !ft_all_eat(conf));
 		pthread_mutex_unlock(conf->m);
-		usleep(1000);
 	}
 	if (ft_thread_join(conf))
 		return ;
