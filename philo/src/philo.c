@@ -6,7 +6,7 @@
 /*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/29 10:39:40 by jose              #+#    #+#             */
-/*   Updated: 2023/08/05 10:39:24 by jose             ###   ########.fr       */
+/*   Updated: 2023/08/25 13:25:29 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,13 @@
 
 static void	*ft_philo(void *phil)
 {
-	t_philo	*philo;
-
-	philo = (t_philo *)phil;
 	while (true)
 	{
-		if (ft_eat(philo))
+		if (ft_eat((t_philo *)phil))
 			break ;
-		if (ft_sleep(philo))
+		if (ft_sleep((t_philo *)phil))
 			break ;
-		if (ft_think(philo))
+		if (ft_think((t_philo *)phil))
 			break ;
 	}
 	return (phil);
@@ -34,14 +31,12 @@ static int	ft_thread_create(t_config *conf)
 	pthread_t	*thrd;
 	int			i;
 
-	i = 0;
-	while (i < conf->philo_num)
+	i = -1;
+	while (++i < conf->philo_num)
 	{
 		thrd = &conf->thrds[i];
 		if (pthread_create(thrd, NULL, &ft_philo, (void *)(&conf->philo[i])))
 			return (ft_free_all(conf), ft_error(THREAD_CREATE), EXIT_FAILURE);
-		usleep(5);
-		i++;
 	}
 	return (EXIT_SUCCESS);
 }
@@ -73,11 +68,13 @@ void	ft_philo_manager(int ac, char **av)
 		return ;
 	if (ft_thread_create(conf))
 		return ;
+	usleep(conf->t_die * 1000);
 	while (stop)
 	{
 		pthread_mutex_lock(conf->m);
 		stop = (ft_all_alive(conf) && !ft_all_eat(conf));
 		pthread_mutex_unlock(conf->m);
+		usleep(1000);
 	}
 	if (ft_thread_join(conf))
 		return ;

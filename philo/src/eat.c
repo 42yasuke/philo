@@ -6,7 +6,7 @@
 /*   By: jose <jose@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 01:59:31 by jose              #+#    #+#             */
-/*   Updated: 2023/08/08 18:02:09 by jose             ###   ########.fr       */
+/*   Updated: 2023/08/25 14:02:10 by jose             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,29 +39,15 @@ static void	ft_drop_forks(t_philo *philo)
 
 static int	ft_print_eat(t_philo *philo)
 {
-	char	*str;
-	char	*str2;
-	int		i;
 	t_ull	elapsed_ms;
 
-	i = -1;
 	pthread_mutex_lock(philo->conf->m);
-	elapsed_ms = timestamp_in_ms();
 	if (philo->conf->stop_thread)
 		return (pthread_mutex_unlock(philo->conf->m), true);
-	while (++i < 3)
-	{
-		str = ft_itoa(elapsed_ms);
-		write (STDOUT_FILENO, str, ft_strlen(str));
-		write (STDOUT_FILENO, " ", 1);
-		str2 = ft_itoa(philo->id + 1);
-		write (STDOUT_FILENO, str2, ft_strlen(str2));
-		if (i < 2)
-			write (STDOUT_FILENO, " has taken a fork\n", 19);
-		else
-			write (STDOUT_FILENO, " is eating\n", 12);
-		(free(str), free(str2));
-	}
+	elapsed_ms = timestamp_in_ms();
+	printf("%lld %d has taken a fork\n", elapsed_ms, philo->id + 1);
+	printf("%lld %d has taken a fork\n", elapsed_ms, philo->id + 1);
+	printf("%lld %d is eating\n", elapsed_ms, philo->id + 1);
 	return (pthread_mutex_unlock(philo->conf->m), false);
 }
 
@@ -71,7 +57,7 @@ static void	ft_get_forks2(t_philo *philo)
 
 	forks = philo->conf->forks;
 	pthread_mutex_lock(&forks[philo->id]);
-	usleep(5);
+	usleep(100);
 	pthread_mutex_lock(&forks[0]);
 }
 
@@ -96,7 +82,7 @@ static void	ft_get_forks(t_philo *philo)
 	}
 	else
 	{
-		pthread_mutex_lock(&forks[philo->id]);
+		(usleep(100), pthread_mutex_lock(&forks[philo->id]));
 		if (philo->id == conf->philo_num - 1)
 			pthread_mutex_lock(&forks[0]);
 		else
@@ -107,7 +93,10 @@ static void	ft_get_forks(t_philo *philo)
 int	ft_eat(t_philo *philo)
 {
 	if (philo->conf->philo_num == 1)
-		usleep(philo->conf->t_die * 1000);
+	{
+		printf("0 1 has taken a fork\n");
+		return (usleep(philo->conf->t_die * 1000), true);
+	}
 	else
 	{
 		ft_get_forks(philo);
